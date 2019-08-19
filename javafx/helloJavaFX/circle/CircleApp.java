@@ -23,8 +23,8 @@ public class CircleApp extends Application {
         text.setText(screenBounds.toString());
        
         //setting the position of the text 
-        //text.setX(10); 
-        //text.setY(10); 
+        text.setX(50); 
+        text.setY(50); 
 
         Circle circ = new Circle(40, 40, 30);
         
@@ -33,8 +33,7 @@ public class CircleApp extends Application {
         ObservableList<Node>  list = root.getChildren();
         list.addAll(text, circ);
 
-        //Scene scene = new Scene(root, 800, 300);
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(root, 800, 300);
 
         stage.setTitle("My JavaFX Application");
         stage.setScene(scene);
