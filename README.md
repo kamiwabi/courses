@@ -1,2 +1,3 @@
-# courses
-Repositori untuk berbagai courses yang diselenggarakan Wabi Teknologi
+# Courses
+
+Repositori untuk berbagai *courses* yang diselenggarakan Wabi Teknologi.
