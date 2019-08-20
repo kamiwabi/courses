@@ -55,3 +55,4 @@ nbdist/
 nbactions.xml
 nb-configuration.xml
 
+/javafx/hello/HelloFxml/nbproject/private/
