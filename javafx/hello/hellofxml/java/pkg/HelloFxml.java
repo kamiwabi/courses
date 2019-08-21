@@ -1,3 +1,5 @@
+package pkg;
+
 import java.io.FileInputStream;
 import java.io.IOException;
  
@@ -7,6 +9,8 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
  
+import pkg.HelloFxmlController;
+
 public class HelloFxml extends Application
 {
     public static void main(String[] args) 
@@ -17,8 +21,13 @@ public class HelloFxml extends Application
     @Override
     public void start(Stage stage) throws IOException 
     {
+
+        HelloFxmlController controller = new HelloFxmlController();
         // Create the FXMLLoader 
         FXMLLoader loader = new FXMLLoader();
+
+        loader.setController(controller);
+
         // Path to the FXML File
         String fxmlDocPath = "HelloFxml.fxml";
         FileInputStream fxmlStream = new FileInputStream(fxmlDocPath);
