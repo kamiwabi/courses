@@ -8,6 +8,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Window;
 
+import java.util.regex.Pattern;
+
 public class RegistrationFormController {
     @FXML
     private TextField nameField;
@@ -21,8 +23,13 @@ public class RegistrationFormController {
     @FXML
     private Button submitButton;
 
+    private boolean isValid(String email) {
+        String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+        return email.matches(regex);
+    }
+
     @FXML
-    protected void handleSubmitButtonAction(ActionEvent event) {
+    public void handleSubmitButtonAction(ActionEvent event) {
         Window owner = submitButton.getScene().getWindow();
         if(nameField.getText().isEmpty()) {
             AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
@@ -32,6 +39,11 @@ public class RegistrationFormController {
         if(emailField.getText().isEmpty()) {
             AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
                     "Please enter your email id");
+            return;
+        }
+        if(!isValid(emailField.getText())) {
+            AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+                    "Please enter vaid email id");
             return;
         }
         if(passwordField.getText().isEmpty()) {

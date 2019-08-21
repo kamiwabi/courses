@@ -15,7 +15,7 @@
          <children>
             <Label text="Masukkan input" />
             <TextField fx:id="txtMasukan" />
-            <Button fx:id="btnOk" mnemonicParsing="false" onAction="printOutput()" text="Ok" />
+            <Button fx:id="btnOk" mnemonicParsing="false" onAction="#printOutput" text="Ok" />
             <Label text="Input anda:" />
             <TextArea fx:id="taHasilInput" prefHeight="200.0" prefWidth="200.0" />
          </children>
