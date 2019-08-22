@@ -1,7 +1,8 @@
 package tv;
  
 import tv.Account;
- 
+import tv.AlertHelper;
+
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,14 +13,22 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
- 
+import javafx.scene.input.MouseEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.Alert;
+import javafx.stage.Window;
+import javafx.scene.control.TableColumn.CellEditEvent;
+import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.control.cell.ComboBoxTableCell;
+
 public class CustomerStage extends Application {
  
   @Override
   public void start(Stage stage) {
  
       TableView<Account> table = new TableView<Account>();
- 
+      table.setEditable(true);
+
       // Create column UserName (Data type of String).
       TableColumn<Account, String> userNameCol //
               = new TableColumn<Account, String>(" Name");
@@ -45,7 +54,28 @@ public class CustomerStage extends Application {
       // Active Column
       TableColumn<Account, Boolean> activeCol//
               = new TableColumn<Account, Boolean>("Active");
- 
+
+      final ObservableList items = FXCollections.observableArrayList();
+      items.add(true);
+      items.add(false);
+      activeCol.setCellFactory(ComboBoxTableCell.<Account, Boolean>forTableColumn(items)); 
+      activeCol.setOnEditCommit(
+          (CellEditEvent<Account, Boolean> t) -> {
+              ((Account) t.getTableView().getItems().get(
+                  t.getTablePosition().getRow())
+                  ).setActive(t.getNewValue());
+              }
+      );
+
+      firstNameCol.setCellFactory(TextFieldTableCell.<Account>forTableColumn());
+      firstNameCol.setOnEditCommit(
+          (CellEditEvent<Account, String> t) -> {
+              ((Account) t.getTableView().getItems().get(
+                  t.getTablePosition().getRow())
+                  ).setFirstName(t.getNewValue());
+              }
+      );
+
       // Defines how to fill data for each cell.
       // Get value from property of Account. .
       userNameCol.setCellValueFactory(new PropertyValueFactory<>("userName"));
@@ -68,6 +98,18 @@ public class CustomerStage extends Application {
       root.setPadding(new Insets(5));
       root.getChildren().add(table);
  
+      table.setOnMousePressed(new EventHandler<MouseEvent>() {
+          @Override 
+          public void handle(MouseEvent event) {
+              if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+                  Window owner = table.getScene().getWindow();
+                  int index = table.getSelectionModel().getSelectedIndex();
+                  AlertHelper.showAlert(Alert.AlertType.INFORMATION, owner , "Information",
+                      table.getItems().get(index).getUserName());
+              }
+          }
+      });
+
       stage.setTitle("TableView (o7planning.org)");
  
       Scene scene = new Scene(root, 450, 300);
