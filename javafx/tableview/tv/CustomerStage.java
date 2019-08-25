@@ -1,5 +1,5 @@
 package tv;
- 
+
 import tv.Account;
 import tv.AlertHelper;
 
@@ -20,6 +20,10 @@ import javafx.stage.Window;
 import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.control.cell.ComboBoxTableCell;
+import javafx.scene.control.Button;
+import javafx.scene.control.SelectionMode;
+import javafx.event.ActionEvent;
+import java.util.ArrayList;
 
 public class CustomerStage extends Application {
  
@@ -77,7 +81,7 @@ public class CustomerStage extends Application {
       );
 
       // Defines how to fill data for each cell.
-      // Get value from property of Account. .
+      // Get value from property of Account.
       userNameCol.setCellValueFactory(new PropertyValueFactory<>("userName"));
       emailCol.setCellValueFactory(new PropertyValueFactory<>("email"));
       firstNameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
@@ -93,10 +97,22 @@ public class CustomerStage extends Application {
       table.setItems(list);
  
       table.getColumns().addAll(userNameCol, emailCol, fullNameCol, activeCol);
- 
+      table.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
+      Button btnDelete = new Button("Delete data");
+      btnDelete.setOnAction(new EventHandler<ActionEvent>() {
+          @Override
+          public void handle(ActionEvent actionEvent) {
+              ObservableList<Account> selectedRows = table.getSelectionModel().getSelectedItems();
+              ArrayList<Account> rows = new ArrayList<>(selectedRows);
+              rows.forEach(row -> table.getItems().remove(row));
+          }
+      });
+
       StackPane root = new StackPane();
       root.setPadding(new Insets(5));
       root.getChildren().add(table);
+      root.getChildren().add(btnDelete);
  
       table.setOnMousePressed(new EventHandler<MouseEvent>() {
           @Override 
@@ -110,7 +126,7 @@ public class CustomerStage extends Application {
           }
       });
 
-      stage.setTitle("TableView (o7planning.org)");
+      stage.setTitle("Customer List");
  
       Scene scene = new Scene(root, 450, 300);
       stage.setScene(scene);

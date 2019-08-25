@@ -26,15 +26,9 @@ public class HelloFxml extends Application
         // Create the FXMLLoader 
         FXMLLoader loader = new FXMLLoader();
 
+        AnchorPane root = (AnchorPane) loader.load(getClass().getResource("HelloFxml.fxml"));
         loader.setController(controller);
 
-        // Path to the FXML File
-        String fxmlDocPath = "HelloFxml.fxml";
-        FileInputStream fxmlStream = new FileInputStream(fxmlDocPath);
- 
-        // Create the Pane and all Details
-        AnchorPane root = (AnchorPane) loader.load(fxmlStream);
- 
         // Create the Scene
         Scene scene = new Scene(root);
         // Set the Scene to the Stage

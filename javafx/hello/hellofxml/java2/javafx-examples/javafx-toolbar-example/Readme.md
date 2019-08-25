@@ -1,1 +1,0 @@
-# JavaFX Toolbar Example App.
