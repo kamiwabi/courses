@@ -1,4 +1,4 @@
-# Pengelolaan Big Dataa Menggunakan Apache Hadoop dan MongoDB
+# Pengelolaan Big Data Menggunakan Apache Hadoop dan MongoDB
 
 ## Tujuan
 
