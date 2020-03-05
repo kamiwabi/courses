@@ -6,7 +6,7 @@ Pelatihan ini membahas tentang pengelolaan Big Data menggunakan Apache Hadoop da
 
 ## Lisensi
 
-![Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)](cc-by-nc-sa-4.0.png)
+![Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)](images/cc-by-nc-sa-4.0.png)
 
 Lihat penjelasan dari [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).
 

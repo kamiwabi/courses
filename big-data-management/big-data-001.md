@@ -41,7 +41,7 @@ Kualitas dan nilai data bisa bagus atau bervariasi.
 
 Arsitektur berisi berbagai komponen serta keterkaitan antar komponen yang membentuk suatu sistem. NIST mengeluarkan [arsitektur referensi Big Data](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.1500-6r2.pdf) yang bisa digunakan sebagai acuan untuk memahami dan membangun sistem Big Data. 
 
-![Arsitektur referensi Big Data dari NIST](big-data-ref-arch.png)
+![Arsitektur referensi Big Data dari NIST](images/big-data-ref-arch.png)
 
 ## Teknologi Big Data
 
