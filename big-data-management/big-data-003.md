@@ -937,7 +937,7 @@ zaky@dellvuan:~$
 
 #### Konfigurasi Hadoop
 
-Ubah 2 file konfigurasi:
+Ubah 3 file konfigurasi:
 
 `$HADOOP_HOME/etc/hadoop/core-site.xml`:
 ```bash
