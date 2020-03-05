@@ -1870,7 +1870,7 @@ $ hdfs dfs -cat output/part-r-00000
 $
 ```
 
-#### Jika Mmnggunakan YARN
+#### Jika Menggunakan YARN
 
 Hapus direktori output di HDFS:
 
