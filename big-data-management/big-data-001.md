@@ -45,23 +45,37 @@ Arsitektur berisi berbagai komponen serta keterkaitan antar komponen yang memben
 
 ## Teknologi Big Data
 
+1.  Scalable storage systems
+2.  Distributed computing platform
+3.  Development tools and framework
+4.  Packaged analytical tools
 
 ## Pemakaian Big Data
 
-### Pemerintah
+Big Data dipakai pada berbagai instansi, organisasi, maupun berbagai keperluan:
 
-### Pengembangan dan Pembangunan Berbagai Bidang
+1.  Pemerintah
+2.  Pengembangan dan Pembangunan Berbagai Bidang
+3.  Manufaktur
+4.  Kesehatan
+5.  Pendidikan
+6.  Media
+7.  Asuransi
+8.  IoT
 
-### Manufaktur
+## Bentuk Data di Big Data
 
-### Kesehatan
+1.  Terstruktur
+2.  Semi terstruktur
+3.  Tidak terstruktur
 
-### Pendidikan
+## *Use Cases* untuk Big Data
 
-### Media
-
-
-### Asuransi
-
-### IoT
+1.  Pengembangan produk: membuat model prediksi untuk produk baru => Netflix, Procter and Gamble
+2.  Prediksi pemeliharaan: data terstruktur (identitas dan spesifikasi mesin) dan semi/tidak terstruktur (sensor, temperatur mesin, log, errors, dan lain-lain) digabungkan dan dianalisis untuk menghasilkan kemungkinan masalah potensial sebelum waktunya.
+3.  *Customer experience*: data dari mana saja digunakan untuk menangani hubungan dengan customer
+4.  *Fraud and Compliance*: identifikasi data untuk mengindikasikan fraud.
+5.  *Machine Learning*: Big Data memungkinkan untuk melatih mesin dengan lebih baik.
+6.  Efisiensi operasional: data akan menghasilkan insights terhadap situasi operasional.
+7.  Memicu inovasi: Big Data digunakan untuk menghasilkan inovasi dengan mempelajari interdependensi antar manusia dan komponen-komponen lainnya dan menghasilkan suatu cara baru.
 
