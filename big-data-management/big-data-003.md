@@ -974,7 +974,7 @@ Jika menggunakan lokal:
 1.  Format filesystem:
 
 ```bash
-hdfs namenode -format
+$ hdfs namenode -format
 2020-03-05 23:52:29,899 INFO namenode.NameNode: STARTUP_MSG:
 /************************************************************
 STARTUP_MSG: Starting NameNode
