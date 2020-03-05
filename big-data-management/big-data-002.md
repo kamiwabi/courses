@@ -8,7 +8,7 @@ Hadoop memungkinkan untuk memanfaatkan satu maupun banyak sekali server (mesin -
 
 ## Arsitektur dan Komponen Hadoop
 
-![Hadoop Architecture](https://data-flair.training/blogs/hadoop-architecture/).
+![Hadoop Architecture](images/hadoop-arch.jpg).
 
 **Catatan:** gambar adalah hak cipta dari DataFlair, diperoleh dari [web DataFlair](https://data-flair.training/blogs/hadoop-architecture/).
 
