@@ -969,7 +969,7 @@ export JAVA_HOME=/home/zaky/software/bigdata/jdk1.8.0_241
 Pada posisi ini, kita bisa membuat pseudo-distributed mode, baik untuk MapReduce yang berjalan di
 lokal maupun menggunakan YARN. 
 
-Jika menggunakan lokal:
+#### Jika menggunakan lokal
 
 1.  Format filesystem:
 
@@ -1870,4 +1870,240 @@ $ hdfs dfs -cat output/part-r-00000
 $
 ```
 
+#### Jika Mmnggunakan YARN
+
+Hapus direktori output di HDFS:
+
+```bash
+$ hdfs dfs -rm output/*
+Deleted output/_SUCCESS
+Deleted output/part-r-00000
+$ hdfs dfs -rmdir output
+$ hhdfs dfs -ls
+Found 1 items
+drwxr-xr-x   - zaky supergroup          0 2020-03-06 00:45 input
+```
+
+Setelah itu ubah 2 file konfugurasi:
+
+`$HADOOP_HOME/etc/hadoop/mapred-site.xml`
+```bash
+<configuration>
+    <property>
+        <name>mapreduce.framework.name</name>
+        <value>yarn</value>
+    </property>
+    <property>
+        <name>mapreduce.application.classpath</name>
+        <value>$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/*:$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/lib/*</value>
+    </property>
+</configuration>
+```
+
+`$HADOOP_HOME/etc/hadoop/yarn-site.xml`
+```bash
+<configuration>
+    <property>
+        <name>yarn.nodemanager.aux-services</name>
+        <value>mapreduce_shuffle</value>
+    </property>
+    <property>
+        <name>yarn.nodemanager.env-whitelist</name>
+        <value>JAVA_HOME,HADOOP_COMMON_HOME,HADOOP_HDFS_HOME,HADOOP_CONF_DIR,CLASSPATH_PREPEND_DISTCACHE,HADOOP_YARN_HOME,HADOOP_MAPRED_HOME</value>
+    </property>
+</configuration>
+```
+
+Setelah itu, aktifkan YARN:
+
+```bash
+$ start-yarn.sh
+Starting resourcemanager
+Starting nodemanagers
+$
+```
+
+Setelah pengaktifan, YARN bisa dipantau melalui Web di http://localhost:8088/
+
+Menjalan MapReduce pada YARN:
+
+```bash
+$ hadoop jar ~/software/bigdata/hadoop-3.2.1/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.2.1.jar grep input output 'dfs[a-z.]+'
+2020-03-06 01:10:00,890 INFO client.RMProxy: Connecting to ResourceManager at /0.0.0.0:8032
+2020-03-06 01:10:01,311 INFO mapreduce.JobResourceUploader: Disabling Erasure Coding for path: /tmp/hadoop-yarn/staging/zaky/.staging/job_1583431675456_0001
+2020-03-06 01:10:01,407 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2020-03-06 01:10:01,521 INFO input.FileInputFormat: Total input files to process : 9
+2020-03-06 01:10:01,601 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2020-03-06 01:10:01,666 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2020-03-06 01:10:01,677 INFO mapreduce.JobSubmitter: number of splits:9
+2020-03-06 01:10:01,822 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2020-03-06 01:10:01,832 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1583431675456_0001
+2020-03-06 01:10:01,833 INFO mapreduce.JobSubmitter: Executing with tokens: []
+2020-03-06 01:10:01,964 INFO conf.Configuration: resource-types.xml not found
+2020-03-06 01:10:01,965 INFO resource.ResourceUtils: Unable to find 'resource-types.xml'.
+2020-03-06 01:10:02,391 INFO impl.YarnClientImpl: Submitted application application_1583431675456_0001
+2020-03-06 01:10:02,461 INFO mapreduce.Job: The url to track the job: http://dellvuan.bpdp.name:8088/proxy/application_1583431675456_0001/
+2020-03-06 01:10:02,462 INFO mapreduce.Job: Running job: job_1583431675456_0001
+2020-03-06 01:10:08,541 INFO mapreduce.Job: Job job_1583431675456_0001 running in uber mode : false
+2020-03-06 01:10:08,543 INFO mapreduce.Job:  map 0% reduce 0%
+2020-03-06 01:10:15,662 INFO mapreduce.Job:  map 33% reduce 0%
+2020-03-06 01:10:16,700 INFO mapreduce.Job:  map 67% reduce 0%
+2020-03-06 01:10:20,723 INFO mapreduce.Job:  map 100% reduce 0%
+2020-03-06 01:10:21,733 INFO mapreduce.Job:  map 100% reduce 100%
+2020-03-06 01:10:22,752 INFO mapreduce.Job: Job job_1583431675456_0001 completed successfully
+2020-03-06 01:10:22,913 INFO mapreduce.Job: Counters: 54
+	File System Counters
+		FILE: Number of bytes read=51
+		FILE: Number of bytes written=2261535
+		FILE: Number of read operations=0
+		FILE: Number of large read operations=0
+		FILE: Number of write operations=0
+		HDFS: Number of bytes read=28730
+		HDFS: Number of bytes written=143
+		HDFS: Number of read operations=32
+		HDFS: Number of large read operations=0
+		HDFS: Number of write operations=2
+		HDFS: Number of bytes read erasure-coded=0
+	Job Counters
+		Launched map tasks=9
+		Launched reduce tasks=1
+		Data-local map tasks=9
+		Total time spent by all maps in occupied slots (ms)=41135
+		Total time spent by all reduces in occupied slots (ms)=2711
+		Total time spent by all map tasks (ms)=41135
+		Total time spent by all reduce tasks (ms)=2711
+		Total vcore-milliseconds taken by all map tasks=41135
+		Total vcore-milliseconds taken by all reduce tasks=2711
+		Total megabyte-milliseconds taken by all map tasks=42122240
+		Total megabyte-milliseconds taken by all reduce tasks=2776064
+	Map-Reduce Framework
+		Map input records=745
+		Map output records=2
+		Map output bytes=41
+		Map output materialized bytes=99
+		Input split bytes=1059
+		Combine input records=2
+		Combine output records=2
+		Reduce input groups=2
+		Reduce shuffle bytes=99
+		Reduce input records=2
+		Reduce output records=2
+		Spilled Records=4
+		Shuffled Maps =9
+		Failed Shuffles=0
+		Merged Map outputs=9
+		GC time elapsed (ms)=1555
+		CPU time spent (ms)=7300
+		Physical memory (bytes) snapshot=3009871872
+		Virtual memory (bytes) snapshot=25759334400
+		Total committed heap usage (bytes)=2691170304
+		Peak Map Physical memory (bytes)=329400320
+		Peak Map Virtual memory (bytes)=2580549632
+		Peak Reduce Physical memory (bytes)=237305856
+		Peak Reduce Virtual memory (bytes)=2579529728
+	Shuffle Errors
+		BAD_ID=0
+		CONNECTION=0
+		IO_ERROR=0
+		WRONG_LENGTH=0
+		WRONG_MAP=0
+		WRONG_REDUCE=0
+	File Input Format Counters
+		Bytes Read=27671
+	File Output Format Counters
+		Bytes Written=143
+2020-03-06 01:10:22,937 INFO client.RMProxy: Connecting to ResourceManager at /0.0.0.0:8032
+2020-03-06 01:10:23,000 INFO mapreduce.JobResourceUploader: Disabling Erasure Coding for path: /tmp/hadoop-yarn/staging/zaky/.staging/job_1583431675456_0002
+2020-03-06 01:10:23,046 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2020-03-06 01:10:23,100 INFO input.FileInputFormat: Total input files to process : 1
+2020-03-06 01:10:23,157 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2020-03-06 01:10:23,223 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2020-03-06 01:10:23,245 INFO mapreduce.JobSubmitter: number of splits:1
+2020-03-06 01:10:23,311 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2020-03-06 01:10:23,322 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1583431675456_0002
+2020-03-06 01:10:23,322 INFO mapreduce.JobSubmitter: Executing with tokens: []
+2020-03-06 01:10:23,341 INFO impl.YarnClientImpl: Submitted application application_1583431675456_0002
+2020-03-06 01:10:23,346 INFO mapreduce.Job: The url to track the job: http://dellvuan.bpdp.name:8088/proxy/application_1583431675456_0002/
+2020-03-06 01:10:23,346 INFO mapreduce.Job: Running job: job_1583431675456_0002
+2020-03-06 01:10:33,451 INFO mapreduce.Job: Job job_1583431675456_0002 running in uber mode : false
+2020-03-06 01:10:33,452 INFO mapreduce.Job:  map 0% reduce 0%
+2020-03-06 01:10:37,486 INFO mapreduce.Job:  map 100% reduce 0%
+2020-03-06 01:10:41,509 INFO mapreduce.Job:  map 100% reduce 100%
+2020-03-06 01:10:41,523 INFO mapreduce.Job: Job job_1583431675456_0002 completed successfully
+2020-03-06 01:10:41,556 INFO mapreduce.Job: Counters: 54
+	File System Counters
+		FILE: Number of bytes read=51
+		FILE: Number of bytes written=451189
+		FILE: Number of read operations=0
+		FILE: Number of large read operations=0
+		FILE: Number of write operations=0
+		HDFS: Number of bytes read=272
+		HDFS: Number of bytes written=29
+		HDFS: Number of read operations=9
+		HDFS: Number of large read operations=0
+		HDFS: Number of write operations=2
+		HDFS: Number of bytes read erasure-coded=0
+	Job Counters
+		Launched map tasks=1
+		Launched reduce tasks=1
+		Data-local map tasks=1
+		Total time spent by all maps in occupied slots (ms)=1585
+		Total time spent by all reduces in occupied slots (ms)=1756
+		Total time spent by all map tasks (ms)=1585
+		Total time spent by all reduce tasks (ms)=1756
+		Total vcore-milliseconds taken by all map tasks=1585
+		Total vcore-milliseconds taken by all reduce tasks=1756
+		Total megabyte-milliseconds taken by all map tasks=1623040
+		Total megabyte-milliseconds taken by all reduce tasks=1798144
+	Map-Reduce Framework
+		Map input records=2
+		Map output records=2
+		Map output bytes=41
+		Map output materialized bytes=51
+		Input split bytes=129
+		Combine input records=0
+		Combine output records=0
+		Reduce input groups=1
+		Reduce shuffle bytes=51
+		Reduce input records=2
+		Reduce output records=2
+		Spilled Records=4
+		Shuffled Maps =1
+		Failed Shuffles=0
+		Merged Map outputs=1
+		GC time elapsed (ms)=75
+		CPU time spent (ms)=1160
+		Physical memory (bytes) snapshot=529399808
+		Virtual memory (bytes) snapshot=5157638144
+		Total committed heap usage (bytes)=452984832
+		Peak Map Physical memory (bytes)=291647488
+		Peak Map Virtual memory (bytes)=2575876096
+		Peak Reduce Physical memory (bytes)=237752320
+		Peak Reduce Virtual memory (bytes)=2581762048
+	Shuffle Errors
+		BAD_ID=0
+		CONNECTION=0
+		IO_ERROR=0
+		WRONG_LENGTH=0
+		WRONG_MAP=0
+		WRONG_REDUCE=0
+	File Input Format Counters
+		Bytes Read=143
+	File Output Format Counters
+		Bytes Written=29
+```
+
+Hasilnya adalah sebagai berikut:
+
+```bash
+$ hdfs dfs -ls output/
+Found 2 items
+-rw-r--r--   1 zaky supergroup          0 2020-03-06 01:10 output/_SUCCESS
+-rw-r--r--   1 zaky supergroup         29 2020-03-06 01:10 output/part-r-00000
+$ hdfs dfs -cat output/part-r-00000
+2020-03-06 01:12:18,825 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+1	dfsadmin
+1	dfs.replication
+$
+```
 
