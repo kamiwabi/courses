@@ -485,7 +485,7 @@ zaky
 $
 ```
 
-Arguman yang digunakan untuk mengakses fasilitas ini adalah *dfsadmin*:
+Argumen yang digunakan untuk mengakses fasilitas ini adalah *dfsadmin*:
 
 ```bash
 $ hdfs dfsadmin -help
