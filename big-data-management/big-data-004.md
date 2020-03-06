@@ -4,7 +4,7 @@ Sesi ini digunakan untuk memahami lapisan penyimpanan data secara terdistribusi 
 
 ## Mengenal HDFS
 
-HDFS merupakan *filesystem * terdistribusi yang memang dimaksudkan untuk digunakan pada *commodity hardware*. HDFS merupakan *filesystem* terdistribusi yang *fault-tolerant* (diperoleh dengan cara mendistribusikan block file ke berbagai node untuk mencegah *single point of failure*). Konsep tersebut dikenal dengan istilah **replikasi**.
+HDFS merupakan *filesystem* terdistribusi yang memang dimaksudkan untuk digunakan pada *commodity hardware*. HDFS merupakan *filesystem* terdistribusi yang *fault-tolerant* (diperoleh dengan cara mendistribusikan block file ke berbagai node untuk mencegah *single point of failure*). Konsep tersebut dikenal dengan istilah **replikasi**.
 
 ## Arsitektur HDFS
 
@@ -745,7 +745,7 @@ $
 
 ### Akses Menggunakan Web UI
 
-Untuk mengakses Namenode menggunakan Web UI, akses ke http://localhost:9870/ menggunakan browser.
+Untuk mengakses *Namenode* menggunakan Web UI, akses ke http://localhost:9870/ menggunakan browser.
 
 ### Akses Menggunakan Java API
 
@@ -759,6 +759,7 @@ $ start-dfs.sh
 Starting namenodes on [localhost]
 Starting datanodes
 Starting secondary namenodes [dellvuan]
+$
 ```
 
 2.  Persiapkan file
