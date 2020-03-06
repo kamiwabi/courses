@@ -80,8 +80,7 @@ $
 
 ## Install Apache Hadoop
 
-Seperti halnya instalasi JDK, instalasi Hadoop dilakukan dengan mengekstrak kemudian mengatur
-*environment variables~.
+Seperti halnya instalasi JDK, instalasi Hadoop dilakukan dengan mengekstrak kemudian mengatur *environment variables*.
 
 ```
 $ tar -xvf ~/master/hadoop-3.2.1.tar.g
