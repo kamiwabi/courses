@@ -45,7 +45,7 @@ Hello Hadoop Goodbye Hadoop
 
 ```bash
 $ hdfs dfs -mkdir wordcount
-zaky@dellvuan:~$ hdfs dfs -mkdir wordcount/input
+$ hdfs dfs -mkdir wordcount/input
 $ hdfs dfs -ls wordcount
 Found 1 items
 drwxr-xr-x   - zaky supergroup          0 2020-03-06 06:56 wordcount/input
