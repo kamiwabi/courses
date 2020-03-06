@@ -68,6 +68,7 @@ export LD_LIBRARY_PATH=$JAVA_HOME/jre/lib/amd64:$JAVA_HOME/jre/lib/amd64/jli:$JA
 Simpan dengan nama file `jdk8`. Setelah itu uji instalasi ini:
 
 ```bash
+$ source ~/env/jdk8
 $ java -version
 java version "1.8.0_241"
 Java(TM) SE Runtime Environment (build 1.8.0_241-b07)
