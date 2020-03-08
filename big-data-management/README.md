@@ -15,7 +15,8 @@ Lihat penjelasan dari [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-
 1.  [Apache Hadoop](https://hadoop.apache.org) (versi 3.2.x), bisa diperoleh di halaman [rilis Hadoop](https://hadoop.apache.org/releases.html).
 2.  [MongoDB](https://www.mongodb.com/) (versi terakhir pada bulan Maret adalah 4.2.3), bisa diperoleh di [MongoDB Download Center](https://www.mongodb.com/download-center/community). Gunakan versi Community dengan *Package* TGZ.
 3.  [Java - JDK versi 8](https://www.oracle.com/java/technologies/javase-downloads.html#JDK8). Penjelasan tentang rilis Java yang diperlukan ada di [Wiki](https://cwiki.apache.org/confluence/display/HADOOP/Hadoop+Java+Versions).
-4.  [Visual Studio Code](https://code.visualstudio.com/) dengan [Java extensions](https://code.visualstudio.com/docs/languages/java).
+4.  [Go](https://golang.org/) - gunakan versi terakhir (sampai Maret 2020 - versi 1.14).
+4.  [Visual Studio Code](https://code.visualstudio.com/) dengan [Java extensions](https://code.visualstudio.com/docs/languages/java) dam [Go extensions](https://code.visualstudio.com/docs/languages/go).
 
 ## Materi
 
