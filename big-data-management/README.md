@@ -29,7 +29,7 @@ Lihat penjelasan dari [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-
 8.  [Model Data di MongoDB](big-data-008.md)
 9.  [Instalasi dan Konfigurasi MongoDB](big-data-009.md)
 10. [Operasi Dasar MongoDB](big-data-010.md)
-11. [Mengakses MongoDB dari Bahasa Pemrograman Python](big-data-011.md)
+11. [Mengakses MongoDB dari Bahasa Pemrograman Go](big-data-011.md)
 12. [Menggunakan MongoDB Bersama Apache Hadoop](big-data-012.md)
 
 
